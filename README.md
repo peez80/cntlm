@@ -1,16 +1,24 @@
 # cntlm docker container
 
+Use the following environment variables for configuration:
+
+- `CNTLM_PROXY` (**mandatory**): address of the upstream proxy (example: proxy.example.com:89)
+- `CNTLM_NO_PROXY` (*optional*): addresses and hostnames to bypass the proxy: (default: localhost, 127.0.0.*, 10.*, 192.168.*, *.local)
+- `CNTLM_USERNAME` (*optional*): username to login to the upstream proxy
+- `CNTLM_DOMAIN`   (*optional*): domain to login to upstream proxy
+
+For authentication one or multiple of the following passwords can be set:
+
+- `CNTLM_PASSWORD` (*optional*): plain text password to login to upstream proxy
+- `CNTLM_CNTLM_PASSNTLMV2` (*optional*): NTLMv2 password to login to upstream proxy
+- `CNTLM_PASSNT` (*optional*): PassNt password to login to upstream proxy
+- `CNTLM_PASSLM` (*optional*): PassLM password to login to upstream proxy
+
 Usages examples : 
 
- * Usage with user interaction to set username, domain and password 
-   * `docker run -it --rm --name mycntlm -p 3128 dacr/cntlm`
-   * `docker run -it --rm --name mycntlm -p 3128 dacr/cntlm proxy1:8080 proxy2:3128`
-   * `docker run -it --rm --name mycntlm -p 4128:3128 dacr/cntlm`
-   * `docker run -it --rm --name mycntlm -p 3128 -v $(pwd)/mydefaults.conf:/defaults.conf dacr/cntlm`
- * Background usage example :
-  * `docker run -d --name mycntlm -e USERNAME=x -e DOMAIN=yy -e PASSWORD=zzz -p 3128 dacr/cntlm`
+ * Simple example without authentication
+   * `docker run -it --rm --name mycntlm -e CNTLM_PROXY="proxy:8100" bachp/cntlm`
+ * With authentication 
+   * `docker run -it --rm --name mycntlm -e CNTLM_PROXY="proxy:8100" -e CNTLM_USERNAME="me" -e CNTLM_PASSWORD="mypass" bachp/cntlm`
 
-The default ntlm proxy (if no proxy is given as cmd args) is set to "proxy:8080". The password is hidden from the advertized command line as shown by ps, cat /proc/*pid*/cmdline, ...
-
-To override defaults, create your own `mydefaults.conf` file by modifying the [default one](https://github.com/dacr/cntlm/blob/master/defaults.conf) as shown in the examples.
-
+Additonal parameters to cntlm can be passwd ass argument to the container.

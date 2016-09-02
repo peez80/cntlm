@@ -1,15 +1,17 @@
-FROM debian:wheezy
+FROM debian:jessie
 
-RUN apt-get update && apt-get install -y cntlm
+RUN apt-get update && apt-get install -y \
+    cntlm \
+ && rm -rf /var/lib/apt/lists/*
 
-ADD defaults.conf /defaults.conf
-ADD start.sh /start.sh
+ADD run.sh /run.sh
 
-RUN chmod a+rw /defaults.conf
-RUN chmod a+rx start.sh
+RUN chmod +x /run.sh
+
+ENV CNTLM_NO_PROXY "localhost, 127.0.0.*, 10.*, 192.168.*, *.local"
 
 EXPOSE 3128
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/run.sh"]
 
-CMD ["proxy:8080"]
+CMD [""]
