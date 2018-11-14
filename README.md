@@ -10,7 +10,7 @@ Use the following environment variables for configuration:
 For authentication one or multiple of the following passwords can be set:
 
 - `CNTLM_PASSWORD` (*optional*): plain text password to login to upstream proxy
-- `CNTLM_CNTLM_PASSNTLMV2` (*optional*): NTLMv2 password to login to upstream proxy
+- `CNTLM_PASSNTLMV2` (*optional*): NTLMv2 password to login to upstream proxy
 - `CNTLM_PASSNT` (*optional*): PassNt password to login to upstream proxy
 - `CNTLM_PASSLM` (*optional*): PassLM password to login to upstream proxy
 
