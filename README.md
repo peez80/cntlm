@@ -20,5 +20,7 @@ Usages examples :
    * `docker run -it --rm --name mycntlm -e CNTLM_PROXY="proxy:8100" bachp/cntlm`
  * With authentication 
    * `docker run -it --rm --name mycntlm -e CNTLM_PROXY="proxy:8100" -e CNTLM_USERNAME="me" -e CNTLM_PASSWORD="mypass" bachp/cntlm`
+ * Verify and print out encrypted NTLM credentials that can be stored to a script e.g.
+   * `docker run -it --rm --name mycntlm -e CNTLM_PROXY="proxy:8100" -e CNTLM_USERNAME="me" bachp/cntlm -I -M http://www.google.com`
 
 Additonal parameters to cntlm can be passwd ass argument to the container.
