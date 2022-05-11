@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cat << EOF > /cntlm.conf
-Proxy       ${CNTLM_PROXY}
 
 NoProxy     ${CNTLM_NO_PROXY}
 
@@ -39,6 +38,11 @@ if [ ! -z "${CNTLM_PASSLM}" ]
 then
 echo "PassLM      ${CNTLM_PASSLM}" >> /cntlm.conf
 fi
+
+IFS=',' read -ra PROXIES <<< "${CNTLM_PROXY}"
+for UPSTREAM_PROXY in "${PROXIES[@]}"; do
+echo "Proxy     ${UPSTREAM_PROXY}" >> /cntlm.conf
+done
 
 cntlm -f -v -c /cntlm.conf $*
 

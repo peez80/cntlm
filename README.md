@@ -2,7 +2,7 @@
 
 Use the following environment variables for configuration:
 
-- `CNTLM_PROXY` (**mandatory**): address of the upstream proxy (example: proxy.example.com:89)
+- `CNTLM_PROXY` (**mandatory**): comma separated list of the upstream proxies (example: proxy.example.com:89, or: proxy1.example.com:89,proxy2.example.com:90)
 - `CNTLM_NO_PROXY` (*optional*): addresses and hostnames to bypass the proxy: (default: localhost, 127.0.0.*, 10.*, 192.168.*, *.local)
 - `CNTLM_USERNAME` (*optional*): username to login to the upstream proxy
 - `CNTLM_DOMAIN`   (*optional*): domain to login to upstream proxy
